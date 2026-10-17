@@ -9,7 +9,8 @@ import okhttp3.Response
 import org.json.JSONObject
 import java.io.IOException
 
-class FoodCatalog {
+
+class FoodCatalog() {
     // create a client
     private val client = OkHttpClient()
 
@@ -18,6 +19,7 @@ class FoodCatalog {
         fun onSuccess(food: FoodItem?)
         fun onFailure(errorMsg: String?)
     }
+
 
     //gets a food by a code and calls from the callback interface
     fun getFood(callBack: FoodCallBack, code: String?) {
@@ -75,6 +77,8 @@ class FoodCatalog {
                         Log.e("Caltracker", "error fecthing response: " + e.message)
                         callBack.onFailure(e.message)
                     }
+                } else {
+                    callBack.onFailure("Food not Found")
                 }
             }
         })

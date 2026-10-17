@@ -1,11 +1,13 @@
 package com.example.caltrack
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.compose.runtime.getValue
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -114,6 +116,9 @@ class MainActivity : AppCompatActivity() {
                     // if failed print error message
                     override fun onFailure(errorMsg: String?) {
                         println(errorMsg)
+                        runOnUiThread {
+                            Toast.makeText(this@MainActivity, errorMsg, Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }, barcode)
             }
